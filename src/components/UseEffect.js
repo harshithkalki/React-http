@@ -6,14 +6,17 @@ function UseEffect() {
     const done = () => {
         alert(`${value.email} ${value.password} ${value.firstname}`)
     }
-    const [showHello, changeHello] = React.useState(true)
-    // useEffect(() => {
-    //     console.log("render useffect");
-    // }, [value.password, value.email])
+    // const [showHello, changeHello] = React.useState(true)
+    useEffect(() => {
+        console.log("render useffect")
+        return () => {
+            console.log("unmount")
+        }
+    }, [value.password, value.email])
     return (
 
         <div>
-            {showHello && <Hello />}
+            {/* {showHello && <Hello />} */}
             <h1>Login</h1>
             <>
                 <input type='email' name="email" value={value.email} placeholder='email' onChange={change}></input>
@@ -23,7 +26,7 @@ function UseEffect() {
                 <input type='text' name="firstname" value={value.firstname} placeholder='firstname' onChange={change}></input>
                 <br></br>
                 <button onClick={done}>submit</button>
-                <button onClick={() => changeHello(!showHello)}>toggle</button>
+                {/* <button onClick={() => changeHello(!showHello)}>toggle</button> */}
             </>
         </div>
     )
